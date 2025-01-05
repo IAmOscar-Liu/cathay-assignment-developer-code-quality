@@ -31,7 +31,7 @@ const INITIAL_FORM_DATA: FormState = {
 
 export const TaskForm: React.FC = () => {
   const { addTask } = useTasks();
-  // I prefer 'useReducer' over 'useState' because you don't have to set 4 state variables.
+  // I prefer 'useReducer' over 'useState' because you don't have to set 4 state variables, and it's easy to reset all fields.
   const [state, dispatch] = useReducer(formReducer, INITIAL_FORM_DATA);
 
   const handleSubmission = (e: FormEvent) => {
@@ -46,8 +46,9 @@ export const TaskForm: React.FC = () => {
         <div className="flex gap-2 items-start">
           <label htmlFor="title">Title </label>
           <input
+            required
             id="title"
-            className="py-1/2 px-1 border-[1px] border-black rounded-md w-40"
+            className="py-0.5 px-1 border-[1px] border-black rounded-md w-40"
             value={state.title}
             onChange={(e) =>
               dispatch({ type: "title", payload: e.target.value })
@@ -57,8 +58,9 @@ export const TaskForm: React.FC = () => {
         <div className="flex gap-2 items-start">
           <label htmlFor="status">Status </label>
           <select
+            id="status"
             value={state.status}
-            className="py-1/2 px-1 border-[1px] border-black rounded-md w-40"
+            className="py-0.5 px-1 border-[1px] border-black rounded-md w-40"
             onChange={(e) =>
               dispatch({
                 type: "status",
@@ -74,8 +76,9 @@ export const TaskForm: React.FC = () => {
         <div className="flex gap-2 items-start">
           <label htmlFor="priority">Priority </label>
           <select
+            id="priority"
             value={state.priority}
-            className="py-1/2 px-1 border-[1px] border-black rounded-md w-40"
+            className="py-0.5 px-1 border-[1px] border-black rounded-md w-40"
             onChange={(e) =>
               dispatch({
                 type: "priority",
@@ -91,8 +94,9 @@ export const TaskForm: React.FC = () => {
         <div className="flex gap-2 items-start">
           <label htmlFor="description">Description</label>
           <textarea
+            required
             id="description"
-            className="py-1/2 px-1 border-[1px] border-black rounded-md w-40"
+            className="py-0.5 px-1 border-[1px] border-black rounded-md w-40"
             value={state.description}
             onChange={(e) =>
               dispatch({ type: "description", payload: e.target.value })
