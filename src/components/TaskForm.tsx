@@ -94,7 +94,6 @@ export const TaskForm: React.FC = () => {
         <div className="flex gap-2 items-start">
           <label htmlFor="description">Description</label>
           <textarea
-            required
             id="description"
             className="py-0.5 px-1 border-[1px] border-black rounded-md w-40"
             value={state.description}
